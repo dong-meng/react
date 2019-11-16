@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        .box {
+            height: 9000px;
+        }
+    </style>
+</head>
+<div id="app">
+    <suiyi></suiyi>
+</div>
+
+
+<template id="tp">
+    <div>
+        组件
+    <div class="box" :style='bg'></div>
+        
+    </div>
+</template>
+<script>
+    Vue.component('suiyi', {
+        template: '#tp',
+        data() {
+            return {
+                x: 0,
+                bg: ""
+            }
+        },
+        methods: {
+            scol(e) {
+                this.scol = document.documentElement.scrollTop || document.body.scrollTop
+                this.x = Math.floor(Math.random() * 256)
+                this.y = Math.floor(Math.random() * 256)
+                this.z = Math.floor(Math.random() * 256)
+                this.bg = `backgroundColor:rgb(${this.x},${this.y},${this.z})`
+            }
+        },
+        mounted() {
+            window.addEventListener('scroll', this.scol)
+        },
+
+    })
+    new Vue({
+        el: '#app',
+    })
+</script>
+
+<body>
+
+</body>
+
+</html>

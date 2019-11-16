@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父==>子通信Document</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        .father {
+            width: 200px;
+            height: 200px;
+            background: olive;
+        }
+        
+        .son {
+            width: 100px;
+            height: 100px;
+            background: rgb(90, 90, 92);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <father></father>
+
+    </div>
+
+
+    <template id="father">
+        <div class="father">
+        father
+        <hr>
+        <button @click='tog()'>toggle</button>
+        <son :prop='flag'></son>
+        </div>
+    </template>
+
+    <template id="son">
+        <div v-if='prop' class="son">
+            son
+        </div>
+    </template>
+
+    <script>
+        // 全局 组件 father 
+        Vue.component('father', {
+            template: '#father',
+            data() {
+                return {
+                    flag: true
+                }
+            },
+            methods: {
+                tog() {
+                    this.flag = !this.flag
+                }
+            }
+        })
+
+        // son
+        Vue.component('son', {
+            template: '#son',
+            props: ["prop"],
+            data() {
+                return {
+
+                }
+            }
+        })
+
+        // 实列
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUE指令操作Document</title>
+    <style>
+        #tog,
+        #tog1 {
+            width: 100px;
+            height: 100px;
+            background: olivedrab;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        {{txt}}
+
+        <div v-html='html'></div>
+        <div v-text='html'></div>
+    </div>
+
+    <div v-if='toggle' v-if='show' id="tog"> </div>
+    <div v-show='toggle' id="tog1"></div>
+    <ul id="list">
+        <!-- <li v-for='item in arr'>{{item}}</li> -->
+        <!-- <li v-for='(item,index) of arr'>{{index}}+{{item}}</li> -->
+        <li v-for='(key,item) in obj'>{{item}}+{{key}}</li>
+    </ul>
+
+
+    <script src="../base//vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                txt: '你好', //data 内为表达式或变量
+                html: '<p>hello</p>',
+                toggle: true
+            }
+        })
+        let gg = new Vue({
+            el: '#tog1',
+            data: {
+                toggle: true, //false
+            }
+        })
+        let lists = new Vue({
+            el: '#list',
+            data: {
+                arr: ['爱情', '科幻', '枪战', '喜剧'],
+                obj: {
+                    love: '爱情',
+                    dongzuo: '动作',
+                    hap: '喜剧'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

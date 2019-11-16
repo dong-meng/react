@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>九九乘法表Document</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        span {
+            background: azure;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p v-for='i of arr' :key=i>
+            <span v-for='j of arr' v-if="i>=j">{{i}}*{{j}}={{i*j}} </span>
+        </p>
+    </div>
+    <!-- 
+    <template>
+            <div id="app">
+                <div v-for="n in 9" :key="n.id">
+                   <b v-for="m in n" :key="m.id">
+                       {{m}}*{{n}}={{m*n}}
+                   </b>
+                </div>
+            </div>
+       </template> -->
+    <script>
+        Vue.component('hehe', {
+            template: '#app'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                arr: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            }
+        })
+    </script>
+</body>
+
+</html>

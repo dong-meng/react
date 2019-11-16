@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件 --todolist</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        #app {
+            width: 300px;
+            border: 5px solid gray;
+            margin: 30px auto;
+        }
+        
+        p {
+            width: 200px;
+            display: inline-block;
+        }
+        
+        .brown {
+            background: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <suiyi></suiyi>
+    </div>
+
+    <template id="tp">
+    <div>
+        <input type="text" v-model='input'> <button @click='add()'>添加</button>
+
+        <div v-for='(item,index) of arr' :class="item.flag? 'brown':'' ">
+            <p>{{item.msg}}</p>
+            <span @click='tog(item)'>{{item.flag? '已完成':'完成'}}</span>
+            <button @click='del(index)'>DEL</button>
+        </div>
+    </div>
+</template>
+
+
+
+    <script>
+        Vue.component('suiyi', {
+            template: '#tp',
+            data() {
+                return {
+                    input: '',
+                    arr: [{
+                        msg: '通宵上王者',
+                        flag: false
+                    }, {
+                        msg: '通宵写项目',
+                        flag: false
+                    }, {
+                        msg: '通宵写代码',
+                        flag: false
+                    }]
+                }
+            },
+            methods: {
+                add() {
+                    this.arr.push({
+                        msg: this.input,
+                        flag: false
+                    })
+                },
+                tog(item) {
+                    item.flag = true
+                },
+                del(index) {
+                    this.arr.splice(index, 1)
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+
+</html>

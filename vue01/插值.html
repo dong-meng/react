@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../base/vue.js"></script>
+</head>
+
+<body>
+    <ul id="app">
+        <li v-for='key of arr'>{{key}}</li>
+        <li>{{string}}</li>
+        <li>{{null}}</li>
+        <li>{{obj}}</li>
+        <li>{{bool?1:02}}</li>
+    </ul>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                string: 'string',
+                arr: [1, 2, 3, 4],
+                unde: undefined,
+                null: null,
+                bool: true,
+                obj: {
+                    name: 'jake',
+                    age: 18
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

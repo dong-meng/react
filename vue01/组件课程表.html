@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        #app {
+            width: 600px;
+            border: 5px solid gold;
+            margin: 30px auto;
+        }
+        
+        span {
+            display: inline-block;
+            width: 60px;
+            margin: 10px;
+            border: 2px solid salmon;
+            text-align: center;
+        }
+        
+        .blue {
+            background: blue;
+        }
+        
+        .orange {
+            background: orange;
+        }
+    </style>
+</head>
+<div id="app">
+    <suiyi></suiyi>
+</div>
+
+<template id="tp">
+    <div>
+        <div >/ <span v-for='item of wek'>{{item}}</span> </div>
+        <div v-for='(item,index) in arr' :class="index%2===1? 'blue':'orange'"> {{index+1}}
+          <span v-for='i in 5'> {{item}}</span>
+        </div>
+    </div>
+</template>
+
+
+<script>
+    Vue.component('suiyi', {
+        template: '#tp',
+        data() {
+            return {
+                selc: '',
+                wek: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                arr: ['英语', '脉冲论', '马克思', '高数', '生物论', '化学', '高数', '计算机']
+            }
+        },
+        methods: {
+
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+</script>
+
+<body>
+
+</body>
+
+</html>

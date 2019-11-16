@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子==>父 通信</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        .father {
+            width: 200px;
+            height: 200px;
+            background: orangered;
+        }
+        
+        .son {
+            width: 100px;
+            height: 100px;
+            background: indigo;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <father></father>
+    </div>
+
+
+    <template id="father">
+        <div class="father">
+            <div v-if='flag' > father</div>
+            <hr>
+            <son :fun='tog'></son>
+        </div>
+    </template>
+
+    <template id="son">
+        <div  class="son">
+            son
+            <button @click='fun()'>toggle</button>
+        </div>
+    </template>
+
+    <script>
+        //创建组件 father
+        Vue.component('father', {
+                template: '#father',
+
+                data() {
+                    return {
+                        flag: true
+                    }
+                },
+                methods: {
+                    tog() {
+                        this.flag = !this.flag
+                    }
+                }
+            })
+            //son
+        Vue.component('son', {
+            template: '#son',
+            props: ["fun"],
+            data() {
+                return {}
+            },
+            methods: {}
+        })
+
+        //实列
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

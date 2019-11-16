@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../base/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{txt}}
+    </div>
+
+    <template id="tp">
+        <div>
+            
+        </div>
+    </template>
+
+    <script>
+        //创建组件
+        let Suiyi = vue.extend({
+            template: '',
+            data: {},
+            methods: {},
+            mounted: {}
+
+        })
+
+        //创建组件并注册
+        Vue.component('suiyi', {
+            el: '#tp',
+            data() {
+                return {}
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                txt: 'nihao'
+            },
+            //早此处注册组件  为局部组件
+            components: {
+                suiyi: suiyi
+            }
+        })
+    </script>
+</body>
+
+</html>

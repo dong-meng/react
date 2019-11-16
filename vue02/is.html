@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../base/vue.js"></script>
+</head>
+
+<body>
+    <ul id="app">
+        <suiyi></suiyi>
+    </ul>
+
+    <template id="tp">
+    <div>
+        <div>
+            你是i
+        </div>
+    </div>
+</template>
+
+    <script>
+        let suiyi = Vue.extend({
+            template: '#tp'
+        })
+        let vm = new Vue({
+            el: '#app',
+            components: {
+                suiyi
+            }
+        })
+    </script>
+</body>
+
+</html>

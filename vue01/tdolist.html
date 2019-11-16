@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todolist作业表</title>
+    <script src="../base/vue.js"></script>
+    <style>
+        #app {
+            width: 300px;
+            border: 10px solid blueviolet;
+            margin: 20px auto;
+        }
+        
+        #app>div {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            margin-top: 10px;
+            background: red;
+        }
+        
+        #app>.olive {
+            background: olive;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='input'> <button @click='add()'>添加事件</button>
+        <div v-for='(item,index) of arr' :class="item.flag? 'olive':''">
+            <p>{{item.msg}}</p>
+            <p @click='flags(item)'> {{item.flag? '已完成': '完成'}}</p>
+            <button @click='del(index)'>DEL</button>
+        </div>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                input: '',
+                arr: [{
+                    msg: '周五去长城',
+                    flag: false
+                }, {
+                    msg: '周六去网吧',
+                    flag: false
+                }, {
+                    msg: '周天去网吧通宵',
+                    flag: false
+                }, {
+                    msg: '周一翘课一天',
+                    flag: false
+                }, {
+                    msg: '周二睡一天',
+                    flag: false
+                }, ]
+            },
+            methods: {
+                add() {
+                    this.arr.push({
+                        msg: this.input,
+                        flag: false
+                    })
+                },
+                flags(item) {
+                    item.flag = true
+                },
+                del(index) {
+                    this.arr.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
